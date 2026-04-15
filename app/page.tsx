@@ -25,7 +25,7 @@ export default async function HomePage() {
         <div className="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
 
           <h1 className="text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary">
-  LogicalTax
+  例からわかる数学
 </h1>
           
             
@@ -54,24 +54,24 @@ export default async function HomePage() {
         <div className="max-w-4xl mx-auto px-4 text-center mb-32">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface text-xs text-foreground mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            そのまま使える税務判断
+            公式を“使える形”で理解する
           </div>
 
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.15] text-foreground-muted">
-  税務判断はできる。
+  公式は抽象的すぎて
 </h2>
           <h2 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight leading-[1.15] text-foreground-muted">
-  でも説明で時間を取られる。
+  理解しにくい
 </h2>
 
 <p className="mt-4 mb-10 text-5xl md:text-6xl font-bold leading-[1.15] text-foreground-muted">
-  その無駄、なくせます。
+  具体からなら、理解できる
 </p>
           
           
 
 <h3 className="text-xl md:text-2xl text-foreground-muted mb-10 max-w-5xl mx-auto leading-relaxed">
-  結論と理由を、そのまま説明に使えます。
+  “なぜその公式を使うのか”がわかります
 
   
 </h3>
@@ -87,7 +87,7 @@ export default async function HomePage() {
               <Link
                 href="/register"
                 className="px-8 py-4 rounded-full bg-primary !text-white text-lg font-medium hover:bg-primary-hover hover:shadow-xl hover:scale-[1.02] transition-all shadow-lg shadow-indigo-500/20">
-                今すぐ登録する
+                無料で試す
               </Link>
             )}
             <Link
@@ -198,16 +198,16 @@ export default async function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none" />
 
             <h3 className="text-3xl font-bold mb-4 relative z-10 text-foreground">
-              説明に使える形で、税務判断をすぐ引き出せます。</h3>
+              公式を“使える形”で引き出せます</h3>
             
             <p className="text-lg text-foreground-muted mb-8 relative z-10">
-              月額6,000円で全て利用できます。</p>
+              </p>
             
             <Link
               href="/login"
               className="relative z-10 inline-block px-8 py-3 rounded-full bg-primary !text-white font-medium hover:bg-primary-hover transition-colors"
             >
-              LogicalTaxを始める
+              数学を始める
             </Link>
           </div>
         </div>
