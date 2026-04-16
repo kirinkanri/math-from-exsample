@@ -58,10 +58,10 @@ export default async function HomePage() {
           </div>
 
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.15] text-foreground-muted">
-  公式は抽象的すぎて
+  抽象的すぎて
 </h2>
           <h2 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight leading-[1.15] text-foreground-muted">
-  理解しにくい
+  理解しにくい公式
 </h2>
 
 <p className="mt-4 mb-10 text-5xl md:text-6xl font-bold leading-[1.15] text-foreground-muted">
