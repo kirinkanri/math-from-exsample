@@ -2,10 +2,12 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+    console.log("✅ register API called");
+
     try {
         const { email, password, fullName } = await req.json();
 
-        // Validate input
+        // 入力チェック
         if (!email || !password) {
             return NextResponse.json(
                 { error: "メールアドレスとパスワードは必須です" },
@@ -20,17 +22,18 @@ export async function POST(req: Request) {
             );
         }
 
-        // Create user with Supabase Admin (auto-confirm email)
+        // ① Authユーザー作成
         const { data, error } = await supabaseAdmin.auth.admin.createUser({
             email,
             password,
-            user_metadata: { full_name: fullName || '' },
-            email_confirm: true, // Auto confirm so user can login immediately
+            user_metadata: { full_name: fullName || "" },
+            email_confirm: true,
         });
 
+        console.log("CREATE USER RESULT:", { data, error });
+
         if (error) {
-            // Handle specific errors
-            if (error.message.includes("already been registered") || error.message.includes("already registered")) {
+            if (error.message.includes("already registered")) {
                 return NextResponse.json(
                     { error: "このメールアドレスは既に登録されています" },
                     { status: 400 }
@@ -39,13 +42,38 @@ export async function POST(req: Request) {
             throw error;
         }
 
+        // ② public.users に同期
+        if (data?.user) {
+            const { error: insertError } = await supabaseAdmin
+                .from("users")
+                .upsert(
+                    {
+                        id: data.user.id,
+                        email: email,
+                        full_name: fullName || "",
+                        created_at: new Date().toISOString()
+                    },
+                    {
+                        onConflict: "id"
+                    }
+                );
+
+            if (insertError) {
+                console.error("INSERT ERROR:", insertError);
+                // 今は止めない（運用優先）
+            }
+        }
+
+        // ③ レスポンス
         return NextResponse.json({
             success: true,
             message: "登録が完了しました。ログインしてください。",
             user: data.user,
         });
+
     } catch (error: any) {
         console.error("Registration error:", error);
+
         return NextResponse.json(
             { error: error.message || "登録中にエラーが発生しました" },
             { status: 400 }
