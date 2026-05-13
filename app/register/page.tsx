@@ -142,7 +142,7 @@ export default function RegisterPage() {
                     <div className="relative">
                         <div className="text-center mb-8">
                             <h1 className="text-3xl font-bold text-foreground mb-3">アカウント作成</h1>
-                            <p className="text-foreground-muted">LogicalTaxを始めましょう</p>
+                            <p className="text-foreground-muted">具体例でわかる数学を始めましょう</p>
                         </div>
 
                         {success ? (

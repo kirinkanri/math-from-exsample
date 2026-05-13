@@ -10,7 +10,7 @@ export default function TokushoPage() {
           href="/"
           className="text-xl inline-flex items-center text-sm font-medium text-foreground-muted hover:text-primary transition-colors"
         >
-          ← LogicalTaxに戻る
+          ← 具体例でわかる数学に戻る
         </Link>
       </div>
 
@@ -44,7 +44,7 @@ export default function TokushoPage() {
 
           <tr className="border-b border-border">
             <th scope="row" className="p-3">メールアドレス</th>
-            <td className="p-3">logicaltax@kalq.info</td>
+            <td className="p-3">math-from-exsample@kalq.info</td>
           </tr>
 
           <tr className="border-b border-border">

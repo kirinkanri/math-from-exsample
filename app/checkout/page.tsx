@@ -133,9 +133,9 @@ function CheckoutContent() {
                 <div className="bg-surface/80 backdrop-blur-xl border border-border p-8 rounded-2xl shadow-2xl">
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-hover mb-2">
-                            LogicalTax
+                            具体例でわかる数学
                         </h1>
-                        <p className="text-foreground-muted">税務判断をサポートする。</p>
+                        <p className="text-foreground-muted">具体例から数学を理解する</p>
                     </div>
 
                     <div className="mb-8">
@@ -147,7 +147,7 @@ function CheckoutContent() {
                     </div>
 
                     <ul className="space-y-4 mb-8">
-                        {['1契約で、同一法人内利用可', '税務判断を論理で説明したい', 'グレー論点を構造で整理したい', '顧客説明を論理的に強化したい'].map((feature) => (
+                        {['公式を「使う場面」から理解できる', '具体例→抽象化の流れで学べる', '解法を丸暗記せず理解できる', '数学同士のつながりが見えてくる'].map((feature) => (
                             <li key={feature} className="flex items-center text-foreground-muted">
                                 <svg className="w-5 h-5 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>

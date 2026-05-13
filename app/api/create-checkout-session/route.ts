@@ -30,8 +30,8 @@ export async function POST(req: Request) {
                 price_data: {
                     currency: 'jpy',
                     product_data: {
-                        name: 'LogicalTax',
-                        description: '税務判断をサポートする月額サブスクリプション',
+                        name: '具体例でわかる数学',
+                        description: '公式を「使う場面」から学べる数学サービス',
                     },
                     unit_amount: 6000, // ¥6,000
                     recurring: { interval: 'month' as const },

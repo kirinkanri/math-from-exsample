@@ -1,59 +1,17 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { redirect } from 'next/navigation';
+
 import { supabaseAdmin } from '@/lib/supabase';
 import Link from 'next/link';
-import UserNav from '@/components/UserNav';
+
 import { Category } from '@/types/database';
-import QAListClient from './QAListClient';
+import QAListClient from '../qa/QAListClient';
 
 export const dynamic = 'force-dynamic';
 
 export default async function QAPage(props: { searchParams: Promise<{ cat?: string; q?: string }> }) {
     const searchParams = await props.searchParams;
-    const session = await getServerSession(authOptions);
-
-    // 🔐 ログインチェック
-    if (!session?.user) {
-        redirect('/login');
-    }
-
-    const BYPASS_SUBSCRIPTION_CHECK = false;
-
-    // 👤 管理者チェック
-    const { data: userData } = await supabaseAdmin
-        .from('users')
-        .select('is_admin')
-        .eq('id', session.user.id)
-        .single();
-
-    // 💰 課金チェック（管理者以外）
-    if (!userData?.is_admin && !BYPASS_SUBSCRIPTION_CHECK) {
-        const { data: sub } = await supabaseAdmin
-            .from('subscriptions')
-            .select('*')
-            .eq('user_id', session.user.id)
-            .single();
-
-        // 未課金
-        if (!sub) {
-            redirect('/checkout');
-        }
-
-　　　　const now = new Date();
-
-// cancel_atが無い場合は current_period_end を使う
-const effectiveEnd =
-    sub.cancel_at || sub.current_period_end;
-
-const isAccessGranted =
-    effectiveEnd && new Date(effectiveEnd) > now;
-
-if (!isAccessGranted) {
-    redirect('/checkout');
-}
+    
         
-    }
+    
 
     // ------------------------
     // データ取得
@@ -93,22 +51,21 @@ if (!isAccessGranted) {
         <div className="min-h-screen">
             <header className="bg-surface/80 backdrop-blur-xl border-b border-border p-4 sticky top-0 z-20">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <Link href="/qa" className="flex items-center gap-3">
+                    <div className="flex flex-col items-start gap-1">
+                    <Link href="/sample" className="flex items-center gap-3">
                         <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-hover">
-                            具体例でわかる数学
+                            具体例でわかる数学（無料体験）
                         </h1>
                     </Link>
-
+　　　　　　　　　　<Link
+                href="/"
+                className="text-sm text-foreground-muted hover:text-primary transition-colors"
+            >
+                ← トップページへ戻る
+            </Link>
+　　　　　　　　　　</div>
                     <div className="flex items-center gap-4">
-                        {userData?.is_admin && (
-                            <Link
-                                href="/admin"
-                                className="px-4 py-2 rounded-lg bg-primary hover:bg-primary-hover !text-white text-sm font-medium"
-                            >
-                                管理画面へ
-                            </Link>
-                        )}
-                        <UserNav user={{ name: session.user.name, email: session.user.email }} />
+                        
                     </div>
                 </div>
             </header>
@@ -120,7 +77,7 @@ if (!isAccessGranted) {
 
                         <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto">
                             <Link
-    href="/qa"
+    href="/sample"
     className={`px-4 py-3 rounded-xl text-sm font-medium whitespace-nowrap transition-all border ${
         !cat
             ? 'bg-primary !text-white border-transparent shadow-lg shadow-indigo-500/20'
@@ -136,7 +93,7 @@ if (!isAccessGranted) {
 {categories?.map((c) => (
     <Link
         key={c.id}
-        href={`/qa?cat=${c.id}`}
+        href={`/sample?cat=${c.id}`}
         className={`px-4 py-3 rounded-xl text-sm font-medium whitespace-nowrap transition-all border ${
             cat === c.id
                 ? 'bg-primary !text-white border-transparent shadow-lg shadow-indigo-500/20'
@@ -157,7 +114,8 @@ if (!isAccessGranted) {
                         categories={categories || []}
                         currentCategory={cat || null}
                         initialQuery={q || ''}
-                        isAdmin={userData?.is_admin || false}
+                        isAdmin={false}
+                        isSample={true}
                     />
                 </main>
             </div>

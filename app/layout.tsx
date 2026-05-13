@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LogicalTax - 税理士意思決定支援ツール",
-  description: "税務に関する意思決定をサポートするプラットフォーム",
+  title: "具体例でわかる数学",
+  description: "具体例から数学を理解する学習サイト。",
 };
 
 export default function RootLayout({

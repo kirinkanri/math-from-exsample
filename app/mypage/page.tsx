@@ -61,7 +61,7 @@ export default async function MyPage() {
                             <span className="text-white font-bold text-lg">L</span>
                         </div>
                         <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-hover">
-                            LogicalTax
+                            具体例でわかる数学
                         </h1>
                     </Link>
                     <div className="flex items-center gap-4">

@@ -45,7 +45,7 @@ export default function DummyPaymentPage() {
                         </div>
                         <h1 className="text-xl font-bold text-foreground mb-2">決済が完了しました</h1>
                         <p className="text-foreground-muted">
-                            LogicalTaxに戻ります...
+                            具体例でわかる数学に戻ります...
                         </p>
                     </>
                 )}

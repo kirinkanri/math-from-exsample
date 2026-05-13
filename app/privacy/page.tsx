@@ -10,15 +10,15 @@ export default function PrivacyPage() {
           href="/"
           className="text-xl inline-flex items-center text-sm font-medium text-foreground-muted hover:text-primary transition-colors"
         >
-          ← LogicalTaxに戻る
+          ← 具体例でわかる数学に戻る
         </Link>
       </div>
       
       <h1 className="text-2xl font-bold">プライバシーポリシー</h1>
 
       <p>
-        合同会社KALQ（以下「当社」）は、税務判断支援サービス
-        「LogicalTax」（以下「本サービス」）において取得する
+        合同会社KALQ（以下「当社」）は、数学学習サービス
+        「具体例でわかる数学」（以下「本サービス」）において取得する
         個人情報を、以下のとおり適切に取り扱います。
       </p>
 
@@ -106,7 +106,7 @@ export default function PrivacyPage() {
 
       <section className="space-y-2">
         <h2 className="font-semibold">お問い合わせ窓口</h2>
-        <p>logicaltax@kalq.info</p>
+        <p>math-from-exsample@kalq.info</p>
       </section>
 
     </main>

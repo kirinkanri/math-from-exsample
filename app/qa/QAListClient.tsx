@@ -23,11 +23,19 @@ interface Props {
     currentCategory: string | null;
     initialQuery: string;
     isAdmin: boolean;
+    isSample?: boolean;
 }
 
 type SortOption = 'default' | 'title_asc' | 'category' ;
 
-export default function QAListClient({ initialQAList, categories, currentCategory, initialQuery, isAdmin }: Props) {
+export default function QAListClient({
+  initialQAList,
+  categories,
+  currentCategory,
+  initialQuery,
+  isAdmin,
+  isSample = false,
+}: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [searchQuery, setSearchQuery] = useState(initialQuery);
@@ -239,7 +247,11 @@ export default function QAListClient({ initialQAList, categories, currentCategor
             {/* Q&A List */}
             <div className="space-y-4">
                 {sortedQaList.map((item) => (
-                    <Link href={`/qa/${item.id}`} key={item.id} className="block group">
+                    <Link
+  href={isSample ? `/sample/${item.id}` : `/qa/${item.id}`}
+  key={item.id}
+  className="block group"
+>
                         <div className="relative bg-surface hover:bg-surface-muted backdrop-blur border-2 border-border hover:border-primary/30 p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-lg">
                             {/* Status Indicator - Admin Only */}
                             {isAdmin && (

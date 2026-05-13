@@ -10,7 +10,7 @@ export default function TermsPage() {
           href="/"
           className="text-xl inline-flex items-center text-sm font-medium text-foreground-muted hover:text-primary transition-colors"
         >
-          ← LogicalTaxに戻る
+          ← 具体例でわかる数学に戻る
         </Link>
       </div>
       
@@ -18,7 +18,7 @@ export default function TermsPage() {
 
       <p>
         本利用規約（以下「本規約」）は、合同会社KALQ（以下「当社」）が提供する
-        税務判断支援サービス「LogicalTax」（以下「本サービス」）の利用条件を定めるものです。
+        数学学習サービス「具体例でわかる数学」（以下「本サービス」）の利用条件を定めるものです。
         本サービスは、税務・会計に関する判断の構造整理および情報整理を支援するツールであり、
         利用者自身の判断を補助することを目的とします。
       </p>

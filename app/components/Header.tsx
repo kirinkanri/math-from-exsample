@@ -10,7 +10,7 @@ export default function Header({ showAuthLinks = false }: Props) {
       <div className="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
         {/* ロゴ（常にトップへ） */}
         <Link href="/" className="text-lg font-semibold tracking-tight text-foreground">
-          LogicalTax 
+      　　　具体例でわかる数学 
 
           {/*
           <span className="text-foreground-muted font-normal">Q&amp;A</span>

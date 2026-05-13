@@ -2,6 +2,9 @@ export const dynamic = 'force-dynamic';
 
 import { supabaseAdmin } from '@/lib/supabase';
 import Link from 'next/link';
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
 
 export default async function HomePage() {
   // Fetch first 5 Q&A items for preview
@@ -25,7 +28,7 @@ export default async function HomePage() {
         <div className="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
 
           <h1 className="text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary">
-  例からわかる数学
+  具体例でわかる数学
 </h1>
           
             
@@ -85,7 +88,7 @@ export default async function HomePage() {
           <div className="flex justify-center items-center gap-4">
             {process.env.NEXT_PUBLIC_ENABLE_REGISTRATION !== 'false' && (
               <Link
-                href="/register"
+                href="/sample"
                 className="px-8 py-4 rounded-full bg-primary !text-white text-lg font-medium hover:bg-primary-hover hover:shadow-xl hover:scale-[1.02] transition-all shadow-lg shadow-indigo-500/20">
                 無料で試す
               </Link>
@@ -164,9 +167,12 @@ export default async function HomePage() {
     {/* スクロール領域 */}
     <div className="h-full overflow-y-auto pr-2">
       <div className="max-h-[1400px] overflow-hidden">
-        <p className="leading-relaxed whitespace-pre-wrap">
-          {item.answer_content}
-        </p>
+        <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+          >
+            {item.answer_content}
+          </ReactMarkdown>
       </div>
     </div>
 
