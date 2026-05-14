@@ -5,6 +5,10 @@ import { supabaseAdmin } from '@/lib/supabase';
 import { stripe } from '@/lib/stripe';
 import Stripe from 'stripe';
 import Link from 'next/link';
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
+import remarkBreaks from "remark-breaks"
 
 export const dynamic = 'force-dynamic';
 
@@ -136,9 +140,12 @@ export default async function QADetailPage({ params }: { params: Promise<{ id: s
                         </div>
 
                         <div className="prose max-w-none prose-lg">
-                            <div className="text-foreground-muted whitespace-pre-wrap leading-relaxed">
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm,remarkBreaks]}
+                                rehypePlugins={[rehypeRaw]}
+                              >
                                 {qa.answer_content}
-                            </div>
+                              </ReactMarkdown>
                         </div>
 
                         <div className="mt-12 pt-8 border-t border-border text-center">
