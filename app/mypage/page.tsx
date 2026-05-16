@@ -58,7 +58,7 @@ export default async function MyPage() {
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <Link href="/qa" className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                            <span className="text-white font-bold text-lg">L</span>
+                            <span className="text-white font-bold text-lg">{/* アイコン検討中 */}</span>
                         </div>
                         <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-hover">
                             具体例でわかる数学
