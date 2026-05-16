@@ -296,11 +296,14 @@ export default function QAListClient({
 
 {/* Summary */}
 <p className="text-sm leading-snug text-foreground-muted line-clamp-1">
-    👉 {item.answer_content.slice(0, 30)}...
+    👉 {
+        item.answer_content
+            .replace(/<[^>]+>/g, '')
+            .replace(/\n/g, ' ')
+            .slice(0, 30)
+    }...
 </p>
-
                             
-                           
                  
 
                             {/* Arrow indicator */}
