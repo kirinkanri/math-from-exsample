@@ -1,7 +1,6 @@
-import { supabase } from "./supabase";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import { supabase } from "./supabase";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -12,30 +11,45 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-    if (!credentials?.email || !credentials?.password) return null;
+                if (!credentials?.email || !credentials?.password) return null;
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: credentials.email,
-        password: credentials.password,
-    });
+                // Safety check: if supabase client failed to init (missing envs)
+                if (!supabase || !supabase.auth) {
+                    console.error("Supabase client is not initialized. Check environment variables.");
+                    return null;
+                }
 
-    if (error || !data.user) {
-        console.error("Supabase Auth Error:", error?.message);
-        return null;
-    }
+                // Authenticate with Supabase
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: credentials.email,
+                    password: credentials.password,
+                });
 
-    return {
-        id: data.user.id,
-        email: data.user.email,
-        name: data.user.user_metadata?.full_name || '',
-        image: data.user.user_metadata?.avatar_url || '',
-    };
-}
+                if (error || !data.user) {
+                    console.error("Supabase Auth Error:", error?.message);
+                    return null;
+                }
+
+                // Return user object
+                return {
+                    id: data.user.id,
+                    email: data.user.email,
+                    name: data.user.user_metadata?.full_name || '',
+                    image: data.user.user_metadata?.avatar_url || '',
+                };
+            }
         })
     ],
-    session: {
-        strategy: "jwt",
-    },
+   
+
+session: {
+    strategy: "jwt",
+    maxAge: 60 * 60 * 24 * 7, // 7日
+},
+jwt: {
+    maxAge: 60 * 60 * 24 * 7, // 7日
+},
+
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
